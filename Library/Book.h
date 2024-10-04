@@ -8,9 +8,8 @@ namespace Library
 	{
 	private:
 		std::string title;
-		std::unique_ptr<Shelf> shelf;
+		
 	public:
-		Book(const std::string& title,
-		std::unique_ptr<Shelf> shelf);
+		Book(const std::string& title);
 	};
 }
