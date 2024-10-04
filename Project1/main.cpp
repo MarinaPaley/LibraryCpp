@@ -1,13 +1,20 @@
-#include <memory>
+#include <iostream>
+#include <optional>
+#include <chrono>
+#include "../Library/Author.h"
+
+using namespace Library;
 int main()
 {
-	std::unique_ptr<int> i = std::make_unique<int>();
-	std::unique_ptr<int[]> array = std::make_unique<int[]>(10);
-	std::unique_ptr<int[]> array2 = std::move(array);
+	const std::string firstName{ "Лев" };
+	const std::string familyName{ "Толстой" };
+	const std::optional<std::string> patronymicName{ "Николаевич" };
+	const std::chrono::year_month_day birthDay{ std::chrono::September / 9 / 1828 };
+	const std::chrono::year_month_day deathDay{ std::chrono::November / 20 / 1910 };
 
-	std::shared_ptr<int> s = std::make_shared<int>(5);
-	std::shared_ptr<int> a = s;
+	Author author{ familyName , firstName, patronymicName, birthDay, deathDay };
 
-	std::weak_ptr<int> p(a);
+	std::cout << author.ToString();
+
 	return 0;
 }

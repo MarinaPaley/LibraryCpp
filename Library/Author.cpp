@@ -20,10 +20,11 @@ Library::Author::Author(const std::string& familyName,
 		throw std::out_of_range("Неправильная дата рождения");
 	}
 
-	if (this->deathDate.has_value() && (this->deathDate.value().year() <= ymd.year()))
+	if (this->deathDate.has_value() && (this->deathDate.value().year() >= ymd.year()))
 	{
 		throw std::out_of_range("Неправильная дата смерти");
 	}
+
 	std::stringstream buffer{};
 	if (this->patronymicName.has_value())
 	{
@@ -55,7 +56,7 @@ std::string Library::Author::ToString() const
 
 std::string Library::Author::FamilyName() const
 {
-	return this->fullName;
+	return this->familyName;
 }
 
 std::string Library::Author::FirstName() const
@@ -82,5 +83,5 @@ bool Library::operator==(const Author& lha, const Author& rha)
 
 std::wstring Library::ToString(const Author& author)
 {
-	return std::wstring{ author.ToString().cbegin(), author.ToString().cend() };
+	return std::wstring{ author.ToString().cbegin(), author.ToString().cend()};
 }
