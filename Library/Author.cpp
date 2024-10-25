@@ -38,9 +38,21 @@ Library::Author::Author(const std::string& familyName,
 	this->fullName = buffer.str();
 }
 
+std::shared_ptr<Library::Author> Library::Author::CreateAuthor(
+	const std::string& familyName,
+	const std::string& firstName,
+	const std::optional<std::string>& patronymicName,
+	const std::optional<std::chrono::year_month_day>& birthDate,
+	const std::optional<std::chrono::year_month_day>& deathDate)
+{
+	return std::make_shared<Author>(Author{ familyName , firstName, patronymicName, birthDate , deathDate });
+}
+
 std::string Library::Author::ToString() const
 {
-	std::stringstream buffer{ this->FullName() };
+	std::stringstream buffer{};
+	buffer << this->FullName();
+
 	if (this->birthDate)
 	{
 		buffer << " " << this->birthDate.value();
