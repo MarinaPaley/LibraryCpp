@@ -14,13 +14,13 @@ namespace Library
 	{
 	private:
 		std::string name;
-		std::vector <std::weak_ptr<Book>> books;
+		std::vector <Book*> books;
 	public:
 		Shelf(const std::string& name);
 		static std::shared_ptr<Shelf> CreateShelf(const std::string& name);
-		bool AddBook(const std::shared_ptr<Book>& book);
-		bool RemoveBook(const std::shared_ptr<Book>& book);
+		bool AddBook(std::shared_ptr<Book> book);
+		bool RemoveBook(std::shared_ptr<Book> book);
 		std::size_t BookCount() const noexcept;
-		std::string ToString() const noexcept;
+		std::string ToString() const;
 	};
 }

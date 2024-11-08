@@ -66,34 +66,35 @@ std::string Library::Author::ToString() const
 	return buffer.str();
 }
 
-std::string Library::Author::FamilyName() const
+std::string Library::Author::FamilyName() const noexcept
 {
 	return this->familyName;
 }
 
-std::string Library::Author::FirstName() const
+std::string Library::Author::FirstName() const noexcept
 {
 	return this->firstName;
 }
 
-std::string Library::Author::PatronymicName() const
+std::string Library::Author::PatronymicName() const noexcept
 {
 	return this->patronymicName.has_value()
 		? this->patronymicName.value()
 		: "Неизвестно";
 }
 
-std::string Library::Author::FullName() const
+std::string Library::Author::FullName() const noexcept
 {
 	return this->fullName;
 }
 
-bool Library::operator==(const Author& lha, const Author& rha)
-{
-	return lha.ToString() == rha.ToString();
-}
+//bool Library::operator==(const Author& lha, const Author& rha)
+//{
+//	return lha.ToString() == rha.ToString();
+//}
 
 std::wstring Library::ToString(const Author& author)
 {
-	return std::wstring{ author.ToString().cbegin(), author.ToString().cend()};
+	auto temp = author.ToString();
+	return std::wstring{ temp.cbegin(), temp.cend()};
 }

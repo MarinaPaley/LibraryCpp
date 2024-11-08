@@ -1,5 +1,6 @@
 #include <sstream>
 #include "Book.h"
+#include "Shelf.h"
 
 Library::Book::Book(const std::string& title)
 	: title{ title }
@@ -11,7 +12,21 @@ std::shared_ptr<Library::Book> Library::Book::CreateBook(const std::string& titl
 	return std::make_shared<Book>(Book{ title });
 }
 
-std::string Library::Book::ToString() const noexcept
+bool Library::Book::ChangeShelf(std::shared_ptr<Library::Shelf>& shelf)
+{
+	if (this->Shelf == nullptr)
+	{
+		this->Shelf = shelf;
+		shelf.get()->AddBook(shared_from_this());
+		return true;
+	}
+	this->Shelf.get()->RemoveBook(shared_from_this());
+	//this->Shelf.get().books.erase(std::remove(this->books.begin(), this->books.end(), book), this->books.end());
+	this->Shelf = shelf;
+	return false;
+}
+
+std::string Library::Book::ToString() const
 {
 	return this->title;
 }

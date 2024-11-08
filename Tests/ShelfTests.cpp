@@ -24,5 +24,20 @@ namespace Tests
 			Assert::IsTrue(result);
 			Assert::IsTrue(1 == shelf.get()->BookCount());
 		};
+
+		TEST_METHOD(RemoveBook_ValidData_True)
+		{
+			// arrange
+			auto shelf = Shelf::CreateShelf("Тестовая полка");
+			auto book = Book::CreateBook("Тестовая книга");
+			auto x = shelf.get()->AddBook(book);
+
+			// act
+			auto result = shelf.get()->RemoveBook(book);
+
+			// assert
+			Assert::IsTrue(result);
+			Assert::IsTrue(0 == shelf.get()->BookCount());
+		}
 	};
 }

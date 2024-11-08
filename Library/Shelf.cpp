@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Shelf.h"
 
 Library::Shelf::Shelf(const std::string& name)
@@ -10,26 +11,27 @@ std::shared_ptr<Library::Shelf> Library::Shelf::CreateShelf(const std::string& n
 	return std::make_shared<Shelf>(Shelf{ name });
 }
 
-bool Library::Shelf::AddBook(const std::shared_ptr<Book>& book)
+bool Library::Shelf::AddBook(std::shared_ptr<Book> book)
 {
-	this->books.push_back(book);
+	this->books.push_back(book.get());
 	book.get()->Shelf = shared_from_this();
 	return true;
 }
 
-bool Library::Shelf::RemoveBook(const std::shared_ptr<Book>& book)
+bool Library::Shelf::RemoveBook(std::shared_ptr<Book> book)
 {
-	//this->books.erase(std::remove(this->books.begin(), this->books.end(), book), this->books.end());
+	this->books.erase(std::remove(this->books.begin(), this->books.end(), book.get()), this->books.end());
 	book.get()->Shelf = nullptr;
 	return true;
 }
+
 
 std::size_t Library::Shelf::BookCount() const noexcept
 {
 	return this->books.size();
 }
 
-std::string Library::Shelf::ToString() const noexcept
+std::string Library::Shelf::ToString() const
 {
 	return this->name;
 }

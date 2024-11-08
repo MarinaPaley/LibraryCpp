@@ -24,7 +24,7 @@ namespace Library
 		std::string fullName;
 		std::optional<std::chrono::year_month_day> birthDate;
 		std::optional<std::chrono::year_month_day> deathDate;
-		std::vector<std::weak_ptr<Book>> books;
+		//std::vector<std::weak_ptr<Book>> books;
 	public:
 		Author(const std::string& familyName,
 			const std::string& firstName,
@@ -40,10 +40,10 @@ namespace Library
 			const std::optional<std::chrono::year_month_day>& deathDate = std::nullopt);
 
 		std::string ToString() const;
-		std::string FamilyName() const;
-		std::string FirstName() const;
-		std::string PatronymicName() const;
-		std::string FullName() const;
+		std::string FamilyName() const noexcept;
+		std::string FirstName() const noexcept;
+		std::string PatronymicName() const noexcept;
+		std::string FullName() const noexcept;
 	};
 
 }
