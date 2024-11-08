@@ -88,10 +88,10 @@ std::string Library::Author::FullName() const noexcept
 	return this->fullName;
 }
 
-//bool Library::operator==(const Author& lha, const Author& rha)
-//{
-//	return lha.ToString() == rha.ToString();
-//}
+bool Library::operator==(const Author& lha, const Author& rha)
+{
+	return lha.ToString() == rha.ToString();
+}
 
 std::wstring Library::ToString(const Author& author)
 {
