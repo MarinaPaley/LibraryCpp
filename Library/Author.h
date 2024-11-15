@@ -15,7 +15,7 @@ namespace Library
 
 	class Book;
 
-	class Author final
+	class Author final : public std::enable_shared_from_this<Author>
 	{
 	private:
 		std::string familyName;
@@ -24,7 +24,7 @@ namespace Library
 		std::string fullName;
 		std::optional<std::chrono::year_month_day> birthDate;
 		std::optional<std::chrono::year_month_day> deathDate;
-		//std::vector<std::weak_ptr<Book>> books;
+		std::vector<std::weak_ptr<Book>> books;
 	public:
 		Author(const std::string& familyName,
 			const std::string& firstName,
@@ -38,6 +38,8 @@ namespace Library
 			const std::optional<std::string>& patronymicName = std::nullopt,
 			const std::optional<std::chrono::year_month_day>& birthDate = std::nullopt,
 			const std::optional<std::chrono::year_month_day>& deathDate = std::nullopt);
+
+		bool AddBook(std::shared_ptr<Book>& book);
 
 		std::string ToString() const;
 		std::string FamilyName() const noexcept;

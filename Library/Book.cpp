@@ -31,6 +31,16 @@ std::string Library::Book::ToString() const
 	return this->title;
 }
 
+std::vector<std::shared_ptr<Library::Author>>& Library::Book::GetAuthors() noexcept
+{
+	return this->authors;
+}
+
+const std::vector<std::shared_ptr<Library::Author>>& Library::Book::GetAuthors() const noexcept
+{
+	return this->authors;
+}
+
 bool Library::operator==(const Book& lha, const Book& rha)
 {
 	return lha.ToString() == rha.ToString();

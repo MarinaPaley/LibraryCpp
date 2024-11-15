@@ -48,6 +48,13 @@ std::shared_ptr<Library::Author> Library::Author::CreateAuthor(
 	return std::make_shared<Author>(Author{ familyName , firstName, patronymicName, birthDate , deathDate });
 }
 
+bool Library::Author::AddBook(std::shared_ptr<Book>& book)
+{
+	this->books.push_back(book);
+	book->GetAuthors().push_back(shared_from_this());
+	return true;
+}
+
 std::string Library::Author::ToString() const
 {
 	std::stringstream buffer{};
