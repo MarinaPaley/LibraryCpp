@@ -1,4 +1,4 @@
-п»ї#include <sstream>
+#include <sstream>
 #include "Author.h"
 
 Library::Author::Author(const std::string& familyName,
@@ -17,12 +17,12 @@ Library::Author::Author(const std::string& familyName,
 
 	if (this->birthDate.has_value() && (this->birthDate.value().year() >= ymd.year()))
 	{
-		throw std::out_of_range("РќРµРїСЂР°РІРёР»СЊРЅР°СЏ РґР°С‚Р° СЂРѕР¶РґРµРЅРёСЏ");
+		throw std::out_of_range("Неправильная дата рождения");
 	}
 
 	if (this->deathDate.has_value() && (this->deathDate.value().year() >= ymd.year()))
 	{
-		throw std::out_of_range("РќРµРїСЂР°РІРёР»СЊРЅР°СЏ РґР°С‚Р° СЃРјРµСЂС‚Рё");
+		throw std::out_of_range("Неправильная дата смерти");
 	}
 
 	std::stringstream buffer{};
@@ -80,7 +80,7 @@ std::string Library::Author::PatronymicName() const noexcept
 {
 	return this->patronymicName.has_value()
 		? this->patronymicName.value()
-		: "РќРµРёР·РІРµСЃС‚РЅРѕ";
+		: "Неизвестно";
 }
 
 std::string Library::Author::FullName() const noexcept
