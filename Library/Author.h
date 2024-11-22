@@ -25,12 +25,13 @@ namespace Library
 		std::optional<std::chrono::year_month_day> birthDate;
 		std::optional<std::chrono::year_month_day> deathDate;
 		std::vector<std::weak_ptr<Book>> books;
-	public:
 		Author(const std::string& familyName,
 			const std::string& firstName,
 			const std::optional<std::string>& patronymicName = std::nullopt,
 			const std::optional<std::chrono::year_month_day>& birthDate = std::nullopt,
 			const std::optional<std::chrono::year_month_day>& deathDate = std::nullopt);
+	public:
+		
 
 		static std::shared_ptr<Author> CreateAuthor(
 			const std::string& familyName,

@@ -24,7 +24,8 @@ namespace Tests
 			const std::chrono::year_month_day deathDay{ std::chrono::November / 20 / 1910 };
 
 			// Act
-			Author author{ familyName , firstName, patronymicName, birthDay, deathDay };
+			auto authorTemp = Author::CreateAuthor(familyName , firstName, patronymicName, birthDay, deathDay );
+			auto& author = *authorTemp.get();
 			const auto actualFamilyName = author.FamilyName();
 			const auto actualFirstName = author.FirstName();
 			const auto actualPatronymicName = author.PatronymicName();
@@ -35,6 +36,21 @@ namespace Tests
 			Assert::AreEqual(familyName, actualFamilyName, L"familyName");
 			Assert::AreEqual(patronymicName.value(), actualPatronymicName, L"patronymicName");
 			Assert::AreEqual(fullName, actualFullname, L"fullName");
+		}
+
+		TEST_METHOD(AddBook_ValidData_True)
+		{
+			// Arrange
+			const std::string firstName{ "Лев" };
+			const std::string familyName{ "Толстой" };
+			auto author = Author::CreateAuthor(familyName, firstName);
+			auto book = Book::CreateBook("Тестовая книга");
+
+			// Act
+			auto result = author.get()->AddBook(book);
+
+			// Assert
+			Assert::IsTrue(result);
 		}
 	};
 }

@@ -15,8 +15,9 @@ namespace Library
 	private:
 		std::string name;
 		std::vector <Book*> books;
-	public:
 		Shelf(const std::string& name);
+	public:
+		
 		static std::shared_ptr<Shelf> CreateShelf(const std::string& name);
 		bool AddBook(std::shared_ptr<Book> book);
 		bool RemoveBook(std::shared_ptr<Book> book);
